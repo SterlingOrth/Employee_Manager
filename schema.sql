@@ -11,7 +11,7 @@ CREATE TABLE department (
 CREATE TABLE role (
 	id INT NOT NULL PRIMARY KEY,
     title VARCHAR(30) NOT NULL,
-    salary DECIMAL(10,4) NOT NULL,
+    salary DECIMAL(10,2) NOT NULL,
     department_id INT NOT NULL
 );
 
@@ -23,16 +23,19 @@ CREATE TABLE employee (
 );
 
 INSERT INTO department ( id, name)
-VALUES ("1", Tom_Holland);
+VALUES ("1", "Tom_Holland");
 
 INSERT INTO role ( id, title, salary, department_id)
-VALUES ("1", manager, 80000, 3);
+VALUES ("1", "manager", 80000, 3);
 
-INSERT INTO department ( id, first_name, last_name, role_id)
-VALUES ("1", Tom, Holland, 88);
+INSERT INTO employee ( id, first_name, last_name, role_id)
+VALUES ("1", "Tom", "Holland", 88);
 
 
 
 SELECT * FROM department;
 SELECT * FROM role;
 SELECT * FROM employee;
+
+
+
