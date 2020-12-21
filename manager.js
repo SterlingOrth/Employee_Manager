@@ -9,12 +9,7 @@ const connection = mysql.createConnection({
   database: "emp_managerDB",
 });
 
-connection.connect((err) => {
-  if (err) throw err;
-  runSearch();
-});
-
-const runSearch = () => {
+const runTracker = () => {
   inquirer
     .prompt({
       name: "action",
@@ -72,6 +67,100 @@ const runSearch = () => {
     });
 };
 
+const addDepartment = () => {
+  inquirer
+    .prompt([
+      {
+        name: "id",
+        type: "input",
+        message: "What id number?",
+      },
+      {
+        name: "name",
+        type: "input",
+        message: "What do you want department name to be?",
+      },
+    ])
+    .then((answer) => {
+      console.log(answer);
+      connection.query("INSERT INTO department SET ?", answer, (err) => {
+        if (err) throw err;
+        runTracker();
+      });
+    });
+};
+
+const addRole = () => {
+  inquirer
+    .prompt([
+      {
+        name: "id",
+        type: "input",
+        message: "What id number?",
+      },
+      {
+        name: "title",
+        type: "input",
+        message: "What do you want title to be?",
+      },
+      {
+        name: "salary",
+        type: "input",
+        message: "What do you want salary to be?",
+      },
+      {
+        name: "department_id",
+        type: "input",
+        message: "What do you want department role id to be?",
+      },
+    ])
+    .then((answer) => {
+      console.log(answer);
+      connection.query("INSERT INTO role SET ?", answer, (err) => {
+        if (err) throw err;
+        runTracker();
+      });
+    });
+};
+
+const addEmployee = () => {
+  inquirer
+    .prompt([
+      {
+        name: "id",
+        type: "input",
+        message: "What id number?",
+      },
+      {
+        name: "first_name",
+        type: "input",
+        message: "What is employee's first name?",
+      },
+      {
+        name: "last_name",
+        type: "input",
+        message: "What is employee's last name?",
+      },
+      {
+        name: "role_id",
+        type: "input",
+        message: "What do you want department role id to be?",
+      },
+      {
+        name: "manager_id",
+        type: "input",
+        message: "Is this employee a manager?",
+      },
+    ])
+    .then((answer) => {
+      console.log(answer);
+      connection.query("INSERT INTO employee SET ?", answer, (err) => {
+        if (err) throw err;
+        runTracker();
+      });
+    });
+};
+
 const viewDepartment = () => {
   connection.query("SELECT * FROM department", (err, res) => {
     if (err) throw err;
@@ -96,25 +185,11 @@ const viewEmployee = () => {
   });
 };
 
-const addDepartment = () => {
-  inquirer
-    .prompt([
-      {
-        name: "id",
-        type: "input",
-        message: "What department id?",
-      },
-      {
-        name: "name",
-        type: "input",
-        message: "What do you want department name to be?",
-      },
-    ])
-    .then((answer) => {
-      console.log(answer);
-      connection.query("INSERT INTO department SET ?", answer, (err) => {
-        if (err) throw err;
-        runSearch();
-      });
-    });
-};
+// const updateEmployee = () => {
+
+// };
+
+connection.connect((err) => {
+  if (err) throw err;
+  runTracker();
+});
