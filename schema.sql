@@ -19,7 +19,8 @@ CREATE TABLE employee (
 	id INT NOT NULL PRIMARY KEY,
 	first_name VARCHAR(30) NOT NULL,
 	last_name VARCHAR(30) NOT NULL,
-	role_id INT NOT NULL
+	role_id INT NOT NULL,
+    manager_id BOOLEAN
 );
 
 INSERT INTO department ( id, name)
@@ -28,8 +29,8 @@ VALUES ("1", "Tom_Holland");
 INSERT INTO role ( id, title, salary, department_id)
 VALUES ("1", "manager", 80000, 3);
 
-INSERT INTO employee ( id, first_name, last_name, role_id)
-VALUES ("1", "Tom", "Holland", 88);
+INSERT INTO employee ( id, first_name, last_name, role_id, manager_id)
+VALUES ("1", "Tom", "Holland", 88, false);
 
 
 
